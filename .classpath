@@ -17,6 +17,9 @@
 	<classpathentry kind="lib" path="libs/mysql-connector-java-5.1.27-bin.jar"/>
 	<classpathentry kind="lib" path="libs/c3p0-0.9.2.1.jar"/>
 	<classpathentry kind="lib" path="libs/hibernate-c3p0-4.3.11.Final.jar"/>
+	<classpathentry kind="lib" path="libs/ehcache-core-2.4.3.jar"/>
+	<classpathentry kind="lib" path="libs/hibernate-ehcache-4.3.11.Final.jar"/>
+	<classpathentry kind="lib" path="libs/slf4j-api-1.6.1.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

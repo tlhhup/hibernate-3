@@ -1,5 +1,6 @@
 package com.hibernatecache.test;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -25,6 +26,22 @@ public class StudentTest {
 		
 		tx.commit();
 		session.close();
+		sessionFactory.close();
+	}
+	
+	@Test
+	public void query(){
+		Configuration configuration=new Configuration().configure();
+		SessionFactory sessionFactory = configuration.buildSessionFactory();
+		Session session = sessionFactory.openSession();
+		
+		Query query = session.createQuery("from Student");
+		query.setCacheable(true).setCacheRegion("dd").list();
+		
+		session.close();
+		
+		sessionFactory.getCache().containsQuery("dd");
+		
 		sessionFactory.close();
 	}
 	

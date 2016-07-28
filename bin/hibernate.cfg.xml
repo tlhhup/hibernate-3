@@ -24,12 +24,24 @@
         <!-- 指定连接池提供者 
         	  如果没有指定，则通过配置文件进行自行推断
         -->
-        <property name="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
+        <property name="hibernate.connection.provider_class">org.hibernate.c3p0.internal.C3P0ConnectionProvider</property>
         
+        <!-- 二级缓存 -->
+        <!-- 使能二级缓存 -->
+		<property name="hibernate.cache.use_second_level_cache">true</property>
+		<!-- 指定缓存提供商 -->
+		<property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
+		<!-- 使能查询缓存 -->
+		<property name="hibernate.cache.use_query_cache">true</property>
+		
         <!-- 添加映射文件 -->
         <mapping resource="com/hibernatecache/entity/User.hbm.xml"/>
         <mapping resource="com/hibernatecache/entity/Role.hbm.xml"/>
         <mapping resource="com/hibernatecache/entity/Student.hbm.xml"/>
         <mapping resource="com/hibernatecache/entity/Teacher.hbm.xml"/>
+        
+        <!-- 指明缓存的类 -->
+		<class-cache usage="read-only" class="com.hibernatecache.entity.Student" region="sampleCache2"/>
+        
     </session-factory>
 </hibernate-configuration>
