@@ -1,0 +1,17 @@
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.hibernatecache.entity">
+    <class name="Teacher" table="teachers">
+        <id name="id" column="id" type="int">
+            <generator class="identity"/>
+        </id>
+        <property name="name" column="name" type="string" length="100"/>
+        
+        <!-- 与学生的一对多单向关联 -->
+        <set name="students" cascade="delete-orphan">
+            <key column="teacherId"/>
+            <one-to-many class="Student"/>
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,35 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!-- 配置jdbc的属性 -->
+        <property name="hibernate.connection.driver_class">org.gjt.mm.mysql.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://127.0.0.1:3306/hibernate</property>
+        <property name="hibernate.connection.username">admin</property>
+        <property name="hibernate.connection.password">123456</property>
+        <!-- 方言 -->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+        <!-- 生成表策略 -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.show_sql">true</property>
+        
+        <!-- c3p0数据源 -->
+        <property name="hibernate.c3p0.max_size">10</property>
+        <property name="hibernate.c3p0.min_size">2</property>
+        <property name="hibernate.c3p0.timeout">5000</property>
+        <property name="hibernate.c3p0.max_statements">100</property>
+        <property name="hibernate.c3p0.idle_test_period">3000</property>
+        <property name="hibernate.c3p0.acquire_increment">2</property>
+        <!-- 指定连接池提供者 
+        	  如果没有指定，则通过配置文件进行自行推断
+        -->
+        <property name="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
+        
+        <!-- 添加映射文件 -->
+        <mapping resource="com/hibernatecache/entity/User.hbm.xml"/>
+        <mapping resource="com/hibernatecache/entity/Role.hbm.xml"/>
+        <mapping resource="com/hibernatecache/entity/Student.hbm.xml"/>
+        <mapping resource="com/hibernatecache/entity/Teacher.hbm.xml"/>
+    </session-factory>
+</hibernate-configuration>
