@@ -105,11 +105,20 @@ hibernate对父子对象的级联操作分为：create，merge，save-update，d
 				<property name="hibernate.cache.use_query_cache">true</property>
 		2. 代码：
 				
+				Session session = sessionFactory.openSession();
+
 				Query query = session.createQuery("from Student");
-				//设置缓存和缓存的名称
 				query.setCacheable(true).setCacheRegion("dd").list();
-				
+		
 				session.close();
-				
-				//调用该方法的前提是：开启了查询缓存
-				sessionFactory.getCache().containsQuery("dd");
+		
+				session = sessionFactory.openSession();
+		
+				//不会触发二次查询
+				query = session.createQuery("from Student");
+				query.setCacheable(true).setCacheRegion("dd").list();
+		
+				boolean flag = sessionFactory.getCache().containsQuery("dd");
+				System.out.println(flag);
+		
+				sessionFactory.close();
